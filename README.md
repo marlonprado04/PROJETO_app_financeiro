@@ -105,95 +105,114 @@ PROJETO_app_financeiro/
 └── README.md
 ```
 
-## Progresso
+## ✅ Progresso
 
 - [x] Criar estrutura inicial do projeto
 - [ ] Módulo de Autenticação (JWT)
 - [ ] CRUD de contas
 - [ ] CRUD de categorias
 - [ ] CRUD de transações
-- [ ] Relatórios simples (lista por categoria, data e conta)
+- [ ] Relatórios simples (por categoria, data e conta)
 - [ ] Logs de eventos
 - [ ] Testes automatizados
-- [ ] Integração com app mobile (novas tasks)
-
-## Observações finais
-
-> O projeto está sendo construído com foco em aprendizado e boas práticas.  
-> Cada etapa será validada com testes e documentação.  
-> O objetivo não é apenas funcionar, mas ser escalável, seguro e bem estruturado.
-
-## Milestones
-
-Abaixo está a lista de principais etapas (milestones) do projeto, com foco em objetivos incrementais e entregas claras.
+- [ ] Integração com frontend Angular
+- [ ] Aplicativo Android (nova etapa)
 
 ---
 
-### M0 – Setup Inicial
+## 💡 Observações Finais
 
-**Objetivo:** Estruturar o ambiente de desenvolvimento e projetos base.
+> O projeto está sendo construído com foco em **aprendizado**, **boas práticas** e **escalabilidade**.  
+> Todas as etapas serão validadas com testes e documentação.  
+> A intenção é entregar não apenas um sistema funcional, mas um sistema limpo, seguro e bem estruturado.
+
+---
+
+## 📈 Milestones
+
+### 🧱 M0 – Setup Inicial
+
+**Objetivo:** Estruturar o ambiente de desenvolvimento e o esqueleto do projeto backend.
 
 - [x] Criar repositório Git e README inicial
-- [ ] Criar estrutura de pacotes do backend
-- [ ] Iniciar projeto Spring Boot com Kotlin
-- [ ] Adicionar Swagger/OpenAPI
+- [ ] Inicializar projeto Spring Boot (Java)
 - [ ] Configurar PostgreSQL (local)
-- [ ] Criar projeto Android com Jetpack Compose
-- [ ] Integrar Room para persistência local
-- [ ] Configurar Gradle Kotlin DSL
+- [ ] Configurar Swagger/OpenAPI
+- [ ] Criar estrutura de pacotes (camadas: controller, service, repository, dto, entity)
+- [ ] Configurar versionamento de banco com Flyway
+- [ ] Preparar ambiente de desenvolvimento local com Docker
 
 ---
 
-### M1 – Autenticação e Segurança
+### 🔐 M1 – Autenticação e Segurança
 
-**Objetivo:** Implementar login seguro e autenticação por dispositivo.
+**Objetivo:** Implementar login seguro com JWT e controle de acesso por perfis.
 
 - [ ] Criar entidades `User` e `Role`
-- [ ] Criar endpoints de login e registro com JWT
-- [ ] Middleware de autenticação no backend
-- [ ] Autenticação por dispositivo
-- [ ] Preferências de usuário (idioma, fuso horário)
+- [ ] Criar endpoints de login e registro
+- [ ] Implementar JWT + filtros de autenticação
+- [ ] Middleware para autorização baseada em perfil
+- [ ] Implementar auditoria básica (quem criou/alterou)
 
 ---
 
-### M2 – Estrutura de Transações
+### 💳 M2 – Módulo de Transações
 
-**Objetivo:** Implementar núcleo de entradas, saídas e transferências.
+**Objetivo:** Implementar núcleo de controle financeiro.
 
-- [ ] CRUD de contas bancárias/carteiras
+- [ ] CRUD de contas (bancárias, carteiras etc.)
 - [ ] CRUD de categorias e subcategorias
 - [ ] CRUD de transações: entrada, saída, transferência
-- [ ] Suporte a transações futuras e recorrentes
-- [ ] Cálculo automático de saldos
+- [ ] Suporte a transações recorrentes e futuras
+- [ ] Cálculo automático de saldo por conta
+- [ ] Filtragem por data, categoria, tipo e conta
 
 ---
 
-### M3 – Sincronização e Logs
+### 🔄 M3 – Logs e Sincronização
 
-**Objetivo:** Permitir uso offline e sincronização de dados com backend.
+**Objetivo:** Garantir rastreabilidade de ações e preparar base para futuro app mobile.
 
-- [ ] Estrutura de log de eventos no mobile
-- [ ] Endpoint de sincronização de eventos
-- [ ] Lógica de merge e resolução de conflitos
-- [ ] WorkManager no Android
-- [ ] Testes de sincronização offline/online
-
----
-
-### M4 – Relatórios e Filtros
-
-**Objetivo:** Geração de insights e análises sobre gastos.
-
-- [ ] Filtro por período, categoria, tipo
-- [ ] Resumo mensal e anual
-- [ ] Exportação de dados (CSV)
+- [ ] Estrutura para log de eventos (entidade + serviço)
+- [ ] Endpoints para envio e recuperação de logs
+- [ ] Estrutura para controle de sincronização (pensando em uso offline no app)
+- [ ] Validação de integridade e histórico de alterações
 
 ---
 
-### M5 – Notificações e Recursos Extras
+### 📊 M4 – Relatórios e Exportações
 
-**Objetivo:** Adicionar funcionalidades extras e alertas úteis.
+**Objetivo:** Geração de insights e ferramentas de análise.
 
-- [ ] Notificações de metas e limites
-- [ ] Alertas de transações futuras e recorrentes
-- [ ] Edição em massa de transações
+- [ ] Relatório de despesas por categoria (mensal/anual)
+- [ ] Relatório de saldo por conta
+- [ ] Exportação de transações em CSV/Excel
+- [ ] Dashboard básico no backend (resumos via endpoints)
+
+---
+
+### 🌐 M5 – Aplicação Web com Angular
+
+**Objetivo:** Interface moderna e responsiva para visualização e gerenciamento de finanças.
+
+- [ ] Setup do projeto Angular
+- [ ] Integração com API REST (Spring Boot)
+- [ ] Tela de login e registro
+- [ ] Tela de dashboard
+- [ ] Tela de transações (CRUD)
+- [ ] Tela de relatórios
+- [ ] Responsividade para uso em mobile
+
+---
+
+### 📱 M6 – Aplicativo Android (versão futura)
+
+**Objetivo:** Criar versão mobile para uso simplificado e sincronizado.
+
+- [ ] Decidir stack mobile (Java, Kotlin, React Native, Flutter...)
+- [ ] Login + sincronização com backend
+- [ ] Exibir e adicionar transações
+- [ ] Acesso offline + sincronização
+- [ ] Notificações e lembretes
+
+---
