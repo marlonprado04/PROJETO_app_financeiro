@@ -115,3 +115,72 @@ PROJETO_app_financeiro/
 ## Observações finais
 
 > O projeto está sendo construído com foco em aprendizado e boas práticas. Cada etapa será validada com testes e documentação. O objetivo não é apenas funcionar, mas ser escalável, seguro e bem estruturado.
+
+## 📈 Milestones
+
+Abaixo está a lista de principais etapas (milestones) do projeto, com foco em objetivos incrementais e entregas claras.
+
+---
+
+### M0 – Setup Inicial
+**Objetivo:** Estruturar o ambiente de desenvolvimento e projetos base.
+
+- [x] Criar repositório Git e README inicial
+- [ ] Criar estrutura de pacotes do backend
+- [ ] Iniciar projeto Spring Boot com Kotlin
+- [ ] Adicionar Swagger/OpenAPI
+- [ ] Configurar PostgreSQL (local)
+- [ ] Criar projeto Android com Jetpack Compose
+- [ ] Integrar Room para persistência local
+- [ ] Configurar Gradle Kotlin DSL
+
+---
+
+### M1 – Autenticação e Segurança
+**Objetivo:** Implementar login seguro e autenticação por dispositivo.
+
+- [ ] Criar entidades `User` e `Role`
+- [ ] Criar endpoints de login e registro com JWT
+- [ ] Middleware de autenticação no backend
+- [ ] Autenticação por dispositivo
+- [ ] Preferências de usuário (idioma, fuso horário)
+
+---
+
+### M2 – Estrutura de Transações
+**Objetivo:** Implementar núcleo de entradas, saídas e transferências.
+
+- [ ] CRUD de contas bancárias/carteiras
+- [ ] CRUD de categorias e subcategorias
+- [ ] CRUD de transações: entrada, saída, transferência
+- [ ] Suporte a transações futuras e recorrentes
+- [ ] Cálculo automático de saldos
+
+---
+
+###  M3 – Sincronização e Logs
+**Objetivo:** Permitir uso offline e sincronização de dados com backend.
+
+- [ ] Estrutura de log de eventos no mobile
+- [ ] Endpoint de sincronização de eventos
+- [ ] Lógica de merge e resolução de conflitos
+- [ ] WorkManager no Android
+- [ ] Testes de sincronização offline/online
+
+---
+
+### M4 – Relatórios e Filtros
+**Objetivo:** Geração de insights e análises sobre gastos.
+
+- [ ] Filtro por período, categoria, tipo
+- [ ] Resumo mensal e anual
+- [ ] Exportação de dados (CSV)
+
+---
+
+### M5 – Notificações e Recursos Extras
+**Objetivo:** Adicionar funcionalidades extras e alertas úteis.
+
+- [ ] Notificações de metas e limites
+- [ ] Alertas de transações futuras e recorrentes
+- [ ] Edição em massa de transações
