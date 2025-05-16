@@ -121,7 +121,7 @@ Este repositório contém o planejamento e, futuramente, o código-fonte de um s
 - [ ] Configurar conexão com SQLite
 - [ ] Definir modelos básicos: User, Account, Category, Subcategory, Transaction
 - [ ] Implementar autenticação básica
-- [ ] Implementar CRUD para contas, categorias e transações
+- [ ] Implementar CRUD para contas, categorias e versi
 - [ ] Testar API com Postman
 
 ### 3. Criar o Frontend - Angular (Fase 1)

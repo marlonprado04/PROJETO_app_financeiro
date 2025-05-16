@@ -18,7 +18,7 @@ Este documento descreve os requisitos funcionais mínimos (MVP) para um aplicati
   - Saldo Atual: com lançamentos finalizados
   - Saldo Previsto: com lançamentos futuros e ainda não finalizados no mês
 - [ ] O saldo da conta deve ser atualizado dinamicamente no banco de dados conforme transações forem finalizadas
-- [ ] O saldo previso deve ser demonstrado com o calculo do saldo atual somado às transações previstas no mês e não finalizadas ainda
+- [ ] O saldo previsto deve ser demonstrado com o calculo do saldo atual somado às transações previstas no mês e não finalizadas ainda
 - [ ] Conta deve constar em uma tabela com id, nome, tipo (ENUM), saldo, se faz parte do orçamento (bool), data do balanço, data de criação e data de modificação
 
 ### 2. 🧾 Cadastro de Categorias e Subcategorias de Orçamento
@@ -26,7 +26,7 @@ Este documento descreve os requisitos funcionais mínimos (MVP) para um aplicati
 - [ ] O usuário deve poder criar, editar e excluir (CRUD) categorias (ex: Casa, Alimentação, Transporte)
 - [ ] O usuário deve poder criar, editar e excluir (CRUD) subcategorias (ex: Mercado dentro de Casa, delivery dentro de Alimentação)
 - [ ] As subcategorias devem ser utilizadas nos lançamentos e nos orçamentos mensais
-- [ ] As subcategorias devem pertencem a uma categoria
+- [ ] As subcategorias devem pertencer a uma categoria
 - [ ] O sistema não deve permitir lançar transações ou orçar diretamente em categorias principais (somente nas subcategorias)
 - [ ] O sistema deve ter um mock de categorias padrão ao acessar o sistema que deve ser carregado para novos usuários
 - [ ] O mock de categorias e subcategorias do sistema deve ser totalmente editável / removível pelos usuários
@@ -36,22 +36,24 @@ Este documento descreve os requisitos funcionais mínimos (MVP) para um aplicati
 ### 3. 💸 Lançamento de Receitas, Despesas e Transferências
 
 - [ ] O usuário deve poder criar, editar e excluir (CRUD) lançamentos 
-- [ ] O sistema deve comportar 3 tipos de operação (ENUM) de lançamentos, sendo de, receita ou transferência entre contas
-- [ ] Lançamentos ao ser criado devem ter um tipo de operação, valor, data, conta associada e subcategoria 
-- [ ] Lançamentos do tipo de operação transferência devem gerar um lançamento clone vinculado por UUID ao original na conta de destino (destinatário)
-- [ ] Lançamentos do tipo de operação transferência devem permitir criação sem que seja adicionada uma subcategoria
-- [ ] Tabela tem que ter recorrencia (fixo, parcelado ou em branco)
-- [ ] Lançamentos com recorrência fixa devem permitir o período semanal, quinzenal e mensal (inicialmente)
-- [ ] Lançamentos com recorrência parcelada devem permitir a seleção de parcelas para registro
+- [ ] O sistema deve comportar 3 tipos de operação (ENUM) de lançamentos, sendo de receita, despesa ou transferência entre contas
+- [ ] Lançamentos ao serem criados devem ter um tipo de operação, valor, data, conta associada e subcategoria 
+- [ ] Lançamentos do tipo transferência devem gerar um lançamento clone vinculado por UUID ao original na conta de destino (destinatário)
+- [ ] Lançamentos do tipo transferência devem permitir criação sem que seja adicionada uma subcategoria
+- [ ] A tabela deve ter campo de recorrência (FIXED, INSTALLMENT ou NONE)
+- [ ] Lançamentos com recorrência fixa devem permitir os períodos semanal, quinzenal e mensal (inicialmente)
+- [ ] Lançamentos com recorrência parcelada devem permitir a seleção do número de parcelas para registro
+- [ ] Os lançamentos recorrentes (fixos ou parcelados) devem ser gerados antecipadamente no momento da criação, criando os lançamentos futuros conforme a frequência e quantidade informadas
+- [ ] Cada parcela de um lançamento parcelado será um lançamento distinto com seu próprio `id`, porém todas as parcelas compartilham o mesmo `groupId` para facilitar edições em lote e agrupamento
 - [ ] Lançamentos com recorrência devem ser gerados nos respectivos meses de seus orçamentos
-- [ ] Cada lançamento deve constar em uma tabela com id, operation, destinatário, descrição, valor, data, conta associada, pk de categoria, recorrencia (ENUM), 
+- [ ] Cada lançamento deve constar em uma tabela com os campos: id, operação, destinatário, descrição, valor, data, conta associada, pk de categoria, recorrência (ENUM), entre outros
 
 
 ### 4. 📊 Orçamento Mensal por Subcategoria
 
 - [ ] O usuário deve poder definir um valor mensal planejado por subcategoria
 - [ ] O sistema deve calcular quanto já foi gasto na subcategoria no mês
-- [ ] O sistema deve exibir a diferença entre o valor planejado e o gasto
+- [ ] O sistema deve exibir a diferença entre o valor planejado, gasto e previsto (negativo ou positivo) para cada subcategoria
 - [ ] Orçamentos devem poder ser criados, editados e excluídos (CRUD)
 - [ ] Cada orçamento deve estar vinculado ao usuário, mês/ano e subcategoria
 
@@ -59,20 +61,9 @@ Este documento descreve os requisitos funcionais mínimos (MVP) para um aplicati
 
 ## Requisitos Futuros
 
-
-### 1. 🔐 Cadastro e Login de Usuários (JWT)
-
-- [ ] Usuário deve poder se cadastrar usando um nome, email e senha
-- [ ] Usuário deve fazer login e receber um token JWT para sua sessão
-- [ ] Usuário deve estar autenticado para acessar qualquer recurso do sistema
-- [ ] Usuário deve poder realizar logout (invalidar token)
-- [ ] Usuário deve ser uma tabela com id, nome, email, senha, data de criação e data de modificação 
-
-### Outros
-
+- Cadastro e Login de Usuários (JWT)
 - Integração automática com bancos via Open Finance
 - Dashboard com gráficos e relatórios avançados
-- Orçamento mensal por subcategoria
 - Notificações e lembretes de vencimento
 - Multiusuário e compartilhamento de contas
 
@@ -117,16 +108,17 @@ Este documento descreve os requisitos funcionais mínimos (MVP) para um aplicati
 - user: FK para User
 - account: FK para Account
 - subcategory: FK para Subcategory // (nullable para transferências)
-- payee: String                     // Destinatário / favorecido
+- payee: String (destinatário / favorecido)
 - description: String
 - amount: BigDecimal
 - date: LocalDate
 - operation: Enum (INCOME, EXPENSE, TRANSFER)
 - transferGroupId: UUID (nullable) // Identificador compartilhado entre transações de transferência
-- isCleared: Boolean               // Se foi finalizado
-- recurrence: Enum (FIXED, INSTALLMENT, NONE)
-- recurrenceFrequency: Enum (WEEKLY, BIWEEKLY, MONTHLY) // para FIXED
-- installmentCount: Integer (nullable)     // para INSTALLMENT
+- recurrence: Enum (FIXED, INSTALLMENT, NONE) // Tipo de recorrência do lançamento
+- recurrenceFrequency: Enum (WEEKLY, BIWEEKLY, MONTHLY) (nullable) // Frequência para recorrência fixa
+- installmentCount: Integer (nullable) // Número total de parcelas para recorrência parcelada
+- groupId: UUID (nullable) // Identificador compartilhado para agrupar lançamentos gerados a partir da mesma recorrência (ex: todas as parcelas de um parcelado)
+- isCleared: Boolean // Indica se o lançamento foi finalizado
 - createdAt: LocalDateTime
 - updatedAt: LocalDateTime
 
