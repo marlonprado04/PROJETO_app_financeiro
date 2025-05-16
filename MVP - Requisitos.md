@@ -1,120 +1,158 @@
 # ✅ MVP — Levantamento de Requisitos Funcionais
 
-## Requisitos Funcionais
+## Introdução
+
+Este documento descreve os requisitos funcionais mínimos (MVP) para um aplicativo financeiro pessoal, incluindo autenticação, cadastro de contas, categorias, lançamentos e regras básicas de negócio.
+
+---
+
+## Requisitos Funcionais (MVP)
+
+
+### 1. 🏦 Cadastro de Contas Bancárias
+
+- [ ] Usuário deve poder criar, editar e excluir (CRUD) contas bancárias (ex: Carteira, Nubank, Caixa)
+- [ ] Na criação cada conta deve possuir um nome, tipo (corrente, poupança/investimento, dinheiro ou crédito), saldo, se faz parte ou não do orçamento e data do balanço inicial
+- [ ] O saldo da conta (saldo inicial) deve ser calculado dinâmicamente de acordo com transações finalizadas
+- [ ] A lista de contas deve exibir dois saldos na interface:
+  - Saldo Atual: com lançamentos finalizados
+  - Saldo Previsto: com lançamentos futuros e ainda não finalizados no mês
+- [ ] O saldo da conta deve ser atualizado dinamicamente no banco de dados conforme transações forem finalizadas
+- [ ] O saldo previso deve ser demonstrado com o calculo do saldo atual somado às transações previstas no mês e não finalizadas ainda
+- [ ] Conta deve constar em uma tabela com id, nome, tipo (ENUM), saldo, se faz parte do orçamento (bool), data do balanço, data de criação e data de modificação
+
+### 2. 🧾 Cadastro de Categorias e Subcategorias de Orçamento
+
+- [ ] O usuário deve poder criar, editar e excluir (CRUD) categorias (ex: Casa, Alimentação, Transporte)
+- [ ] O usuário deve poder criar, editar e excluir (CRUD) subcategorias (ex: Mercado dentro de Casa, delivery dentro de Alimentação)
+- [ ] As subcategorias devem ser utilizadas nos lançamentos e nos orçamentos mensais
+- [ ] As subcategorias devem pertencem a uma categoria
+- [ ] O sistema não deve permitir lançar transações ou orçar diretamente em categorias principais (somente nas subcategorias)
+- [ ] O sistema deve ter um mock de categorias padrão ao acessar o sistema que deve ser carregado para novos usuários
+- [ ] O mock de categorias e subcategorias do sistema deve ser totalmente editável / removível pelos usuários
+- [ ] Cada categoria deve constar em uma tabela com  um id, nome, fk de usuario, data de criação e data de modificação
+- [ ] Cada subcategoria deve constar em uma tabela com id, nome, fk de categoria, data de criação e data de modificação
+
+### 3. 💸 Lançamento de Receitas, Despesas e Transferências
+
+- [ ] O usuário deve poder criar, editar e excluir (CRUD) lançamentos 
+- [ ] O sistema deve comportar 3 tipos de operação (ENUM) de lançamentos, sendo de, receita ou transferência entre contas
+- [ ] Lançamentos ao ser criado devem ter um tipo de operação, valor, data, conta associada e subcategoria 
+- [ ] Lançamentos do tipo de operação transferência devem gerar um lançamento clone vinculado por UUID ao original na conta de destino (destinatário)
+- [ ] Lançamentos do tipo de operação transferência devem permitir criação sem que seja adicionada uma subcategoria
+- [ ] Tabela tem que ter recorrencia (fixo, parcelado ou em branco)
+- [ ] Lançamentos com recorrência fixa devem permitir o período semanal, quinzenal e mensal (inicialmente)
+- [ ] Lançamentos com recorrência parcelada devem permitir a seleção de parcelas para registro
+- [ ] Lançamentos com recorrência devem ser gerados nos respectivos meses de seus orçamentos
+- [ ] Cada lançamento deve constar em uma tabela com id, operation, destinatário, descrição, valor, data, conta associada, pk de categoria, recorrencia (ENUM), 
+
+
+### 4. 📊 Orçamento Mensal por Subcategoria
+
+- [ ] O usuário deve poder definir um valor mensal planejado por subcategoria
+- [ ] O sistema deve calcular quanto já foi gasto na subcategoria no mês
+- [ ] O sistema deve exibir a diferença entre o valor planejado e o gasto
+- [ ] Orçamentos devem poder ser criados, editados e excluídos (CRUD)
+- [ ] Cada orçamento deve estar vinculado ao usuário, mês/ano e subcategoria
+
+
+
+## Requisitos Futuros
+
 
 ### 1. 🔐 Cadastro e Login de Usuários (JWT)
 
-- [ ] Usuário pode se cadastrar com email e senha
-- [ ] Usuário pode fazer login e receber um token JWT
-- [ ] Usuário deve estar autenticado para acessar qualquer recurso do sistema (eventualmente fazer uma versão de teste para uso com armazenamento em variável ou banco de dados em cache, para teste de recrutadores)
-- [ ] Logout (invalidação do token no front-end)
+- [ ] Usuário deve poder se cadastrar usando um nome, email e senha
+- [ ] Usuário deve fazer login e receber um token JWT para sua sessão
+- [ ] Usuário deve estar autenticado para acessar qualquer recurso do sistema
+- [ ] Usuário deve poder realizar logout (invalidar token)
+- [ ] Usuário deve ser uma tabela com id, nome, email, senha, data de criação e data de modificação 
 
-__Notas:__
+### Outros
 
-- Spring Security + JWT
-- Criptografia de senha (BCrypt)
-- Middleware no front (Angular) paara verificar token e redirecionar para login
+- Integração automática com bancos via Open Finance
+- Dashboard com gráficos e relatórios avançados
+- Orçamento mensal por subcategoria
+- Notificações e lembretes de vencimento
+- Multiusuário e compartilhamento de contas
 
-__Modelo: Usuário__
+---
 
-- id: long
-- name: String
-- email: String
-- password: String (hash via BCrypt)
-- createdAt: LocalDateTime
-- updatedAt: LocalDateTime
+## Modelos de Dados
 
-### 2. 🏦 Cadastro de Contas Bancárias Manuais
-
-- [ ] Usuário pode criar, editar e excluir contas bancárias (ex: Carteira, Nubank, Caixa)
-- [ ] Cada conta possui: nome, tipo (corrente, poupança / investimento, dinheiro ou crédito) e saldo inicial
-- [ ] O saldo da conta é **calculado** automaticamente com base no saldo inicial e nos lançamentos
-- [ ] Exibir dois saldos na interface:
-  - Saldo Atual: com lançamentos finalizados
-  - Saldo Previsto: com todos os lançamentos futuros e não finalizados do mês
-- [ ] Nenhum dos saldos é salvo diretamente no banco — são derivados
-
-__Notas__
-
-- Modelo ``Account`` com FK para o ``User``
-
-- Campo ``balance`` pode ser calculado ou armazenado com atualização via trigger lógica
-
-__Model: Account__
+### Account
 
 - id: Long
 - name: String
 - type: Enum (CHECKING, SAVINGS, CASH, CREDIT)
 - initialBalance: BigDecimal
+- currentBalance: BigDecimal       // Atualizado dinamicamente com base em lançamentos finalizados
+- isBudgetIncluded: Boolean        // Se faz parte do orçamento
+- balanceDate: LocalDate           // Data do balanço
 - user: FK para User
 - createdAt: LocalDateTime
 - updatedAt: LocalDateTime
 
+### Category
 
-
-### 3. 🧾 Cadastro de Categorias e Subcategorias de Orçamento
-
-- [ ] Usuário pode criar, editar e excluir categorias (ex: Casa, Alimentação, Transporte)
-- [ ] Usuário pode criar, editar e excluir subcategorias (ex: Mercado dentro de Casa, delievery dentro de alimentação) 
-- [ ] As subcategorias serão utilizadas nos lançamentos e nos orçamentos mensais
-- [ ] Cada subcategoria pertence a uma categoria
-- [ ] O sistema não permite lançar transações ou orçar diretamente em categorias principais (somente nas subcategorias)
-- [ ] Mock de categorias pode ser carregado para novos usuários, mas é totalmente editável
-
-
-
-__Notas__ 
-
-- Modelos ``Category`` e ``SubCategory``, com relação 1:N (uma ``Category`` tem muitas ``SubCategory``)
-- Subcategorias são os __nós finais__ da hierarquia — os lançamentos e orçamentos usam apenas elas
-
-
-
-__Model: Category__
-
-- id: long
+- id: Long
 - name: String
 - user: FK para User
 - createdAt: LocalDateTime
 - updatedAt: LocalDateTime
-- 
-__Model: Subcategory__
+
+
+### Subcategory
 
 - id: Long
 - name: String
 - category: FK para Category
-- user: FK para User
 - createdAt: LocalDateTime
 - updatedAt: LocalDateTime
 
 
-### 4. 💸 Lançamento de Receitas, Despesas e Transferências
-
-- [ ] Usuário pode criar lançamentos do tipo despesa, receita ou transferência entre contas
-- [ ] Cada lançamento tem agrupador (payee), tipo, descrição, valor, data, conta associada, subcategoria (exceto transferencias)
-- [ ] Transferências entre conta devem debitar em uma e creditar em outra (sem afetar orçamentos)
-
-__Notas__
-
-- Cada transação é sempre vinculada a uma única conta
-- Transferências são controladas pelo transferGroupId
-- O campo `payee` (agrupador) é string simples, sem FK para outra tabela por enquanto
-- `transferGroupId` serve para vincular os dois lançamentos que formam uma transferência
-
-
-
-__Model: Transaction__ 
+### Transaction
 
 - id: Long
-- user: FK User
-- account: FK Account
-- subcategory: FK Subcategory
-- payee: String
+- user: FK para User
+- account: FK para Account
+- subcategory: FK para Subcategory // (nullable para transferências)
+- payee: String                     // Destinatário / favorecido
 - description: String
 - amount: BigDecimal
 - date: LocalDate
-- type: Enum (INCOME, EXPANSE)
-- transferGroupId: UUID
-- isPending: boolean
+- operation: Enum (INCOME, EXPENSE, TRANSFER)
+- transferGroupId: UUID (nullable) // Identificador compartilhado entre transações de transferência
+- isCleared: Boolean               // Se foi finalizado
+- recurrence: Enum (FIXED, INSTALLMENT, NONE)
+- recurrenceFrequency: Enum (WEEKLY, BIWEEKLY, MONTHLY) // para FIXED
+- installmentCount: Integer (nullable)     // para INSTALLMENT
 - createdAt: LocalDateTime
 - updatedAt: LocalDateTime
+
+
+### Budget
+
+- id: Long
+- user: FK para User
+- subcategory: FK para Subcategory
+- month: Integer (1-12)
+- year: Integer
+- plannedAmount: BigDecimal       // Valor orçado
+- actualAmount: BigDecimal        // Calculado dinamicamente dos lançamentos finalizados
+- createdAt: LocalDateTime
+- updatedAt: LocalDateTime
+
+---
+
+## Notas Técnicas
+
+- Autenticação: Spring Security + JWT
+- Criptografia de senha: BCrypt
+- Middleware no front-end (Angular) para verificar token e redirecionar para login
+- Modelo `Account` com FK para `User`
+- Campo `balance` pode ser calculado ou armazenado com atualização via trigger lógica
+- Modelos `Category` e `SubCategory` com relação 1:N (uma categoria tem muitas subcategorias)
+- Subcategorias são os nós finais da hierarquia — lançamentos e orçamentos usam apenas elas
+- Transferências são controladas pelo `transferGroupId`
+- O campo `payee` é string simples, sem FK para outra tabela por enquanto
