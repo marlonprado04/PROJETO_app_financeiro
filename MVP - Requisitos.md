@@ -8,6 +8,14 @@ Este documento descreve os requisitos funcionais mínimos (MVP) para um aplicati
 
 ## Requisitos Funcionais (MVP)
 
+### 0. 🔐 Autenticação Básica (MVP inicial)
+
+- [ ] Implementar autenticação via login com senha fixa configurada no backend (sem cadastro de usuário no MVP)
+- [ ] O front-end deve possuir tela de login solicitando a senha
+- [ ] Toda requisição para API deve exigir token simples ou header customizado que valida a sessão
+- [ ] Sessão expira após tempo configurável, forçando re-login
+- [ ] Redirecionar para login se não autenticado
+
 
 ### 1. 🏦 Cadastro de Contas Bancárias
 
@@ -57,6 +65,13 @@ Este documento descreve os requisitos funcionais mínimos (MVP) para um aplicati
 - [ ] Orçamentos devem poder ser criados, editados e excluídos (CRUD)
 - [ ] Cada orçamento deve estar vinculado ao usuário, mês/ano e subcategoria
 
+### 5. ⚙️ Configuração e ambiente
+
+- [ ] Backend deve expor API REST consumível pelo Angular (CORS habilitado)
+- [ ] Backend deve ser dockerizável para fácil deploy
+- [ ] Front-end Angular deve ser produzido com Angular CLI e empacotado para deploy simples (ex: `ng build --prod`)
+- [ ] Front-end deve armazenar token no localStorage ou sessionStorage
+- [ ] Front-end deve proteger rotas via guarda de rotas (Angular Route Guard) para bloquear acesso não autenticado
 
 
 ## Requisitos Futuros
@@ -70,6 +85,14 @@ Este documento descreve os requisitos funcionais mínimos (MVP) para um aplicati
 ---
 
 ## Modelos de Dados
+
+### User
+
+  - id: Long
+  - username: String
+  - passwordHash: String (armazenar hash da senha fixa)
+  - createdAt: LocalDateTime
+  - updatedAt: LocalDateTime
 
 ### Account
 
