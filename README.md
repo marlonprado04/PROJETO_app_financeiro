@@ -218,7 +218,11 @@ Este repositório contém o planejamento e, futuramente, o código-fonte de um s
 Este projeto está licenciado sob a **GNU General Public License (GPL) v3.0**.
 
 - O código é aberto para leitura, modificação e uso pessoal ou educacional.
+- O código é aberto para leitura, modificação e uso pessoal ou educacional.
 - Qualquer software derivado **deve ser liberado sob a mesma licença GPL**.
 - Qualquer distribuição ou modificação do código **deve incluir o código-fonte**.
 
 > Para mais detalhes, veja o arquivo [LICENSE](./LICENSE).
+
+Se quiser, posso exportar isso como .md para você baixar. Deseja?
+
