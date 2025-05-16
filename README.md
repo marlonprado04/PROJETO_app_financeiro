@@ -21,7 +21,6 @@ Este repositório contém o planejamento e, futuramente, o código-fonte de um s
 
 ## 🧠 Funcionalidades previstas (MVP)
 
-- [ ] Cadastro e login de usuários (JWT)
 - [ ] Cadastro de contas bancárias manuais
 - [ ] Cadastro de categorias e subcategorias de orçamento
 - [ ] Lançamento de receitas, despesas e transferências 
@@ -40,29 +39,31 @@ Este repositório contém o planejamento e, futuramente, o código-fonte de um s
 ## 🛠️ Stack Tecnológica
 
 ### Backend
-- Java 17+
-- Spring Boot
-- Spring Security (JWT)
+- Java 17+  
+- Spring Boot  
 - Spring Data JPA (Hibernate)
-- PostgreSQL
-- Docker
+- Spring Security (JWT) (para versões futuras com autenticação)  
+- SQLite (banco local para desktop)  
+- PostgreSQL (para backend web/produção remota)  
+- Docker (para ambiente e deploy futuros)
 
 ### Frontend Web
-- Angular 17+
-- Angular Material
-- Consumo de API REST com HttpClient
-- Gráficos com Chart.js (ou similar)
+- Angular 17+  
+- Angular Material  
+- Consumo de API REST com HttpClient  
+- Gráficos com Chart.js (ou similar)  
+- **Electron** (empacotamento do Angular para app desktop local)
 
 ### Mobile App (futuro)
-- Flutter *(preferência atual)* ou Angular + Capacitor
-- Comunicação com a API via HTTP
-- Deploy na Google Play (e futuramente, App Store)
+- Flutter (preferência atual) ou Angular + Capacitor  
+- Comunicação com API via HTTP  
+- Deploy Google Play e App Store (mais adiante)
 
 ### DevOps
-- Docker + Docker Compose
-- Nginx (proxy reverso)
-- Let's Encrypt (HTTPS gratuito)
-- VPS Linux (Ubuntu Server)
+- Docker + Docker Compose  
+- Nginx (proxy reverso para API e frontend web)  
+- Let's Encrypt (certificados SSL/TLS gratuitos)  
+- VPS Linux (Ubuntu Server ou similar) para deploy web  
 
 ---
 
@@ -104,6 +105,50 @@ Este repositório contém o planejamento e, futuramente, o código-fonte de um s
 | 13+    | Início do App Android (com Flutter ou Capacitor)                                   |
 
 > 🧠 *Este cronograma é flexível e poderá ser ajustado conforme evolução e aprendizados ao longo do projeto.*
+
+## 🚀 Plano de Desenvolvimento - Passo a Passo
+
+### 1. Configurar o Ambiente
+- [ ] Instalar JDK 17+
+- [ ] Instalar Node.js + npm
+- [ ] Instalar Angular CLI (`npm install -g @angular/cli`)
+- [ ] Instalar Electron (`npm install electron --save-dev`)
+- [ ] Configurar IDE para Java (IntelliJ IDEA, VSCode com extensões Java)
+- [ ] Configurar IDE para Angular (VSCode ou WebStorm)
+
+### 2. Criar o Backend - Spring Boot (Fase 1)
+- [ ] Criar projeto Spring Boot básico com Spring Web e Spring Data JPA
+- [ ] Configurar conexão com SQLite
+- [ ] Definir modelos básicos: User, Account, Category, Subcategory, Transaction
+- [ ] Implementar autenticação básica
+- [ ] Implementar CRUD para contas, categorias e transações
+- [ ] Testar API com Postman
+
+### 3. Criar o Frontend - Angular (Fase 1)
+- [ ] Gerar novo projeto Angular
+- [ ] Desenvolver telas básicas: Login, Dashboard, Cadastro e Listagem de Contas, Categorias e Transações
+- [ ] Consumir API REST do backend com HttpClient
+- [ ] Implementar rotas e navegação básica
+
+### 4. Integrar Desktop com Electron (Fase 2)
+- [ ] Configurar projeto Angular para rodar dentro do Electron (servir o build do Angular como app desktop)
+- [ ] Configurar comunicação local entre Electron e backend Spring (rodar localmente)
+- [ ] Testar funcionamento offline (backend + frontend local)
+
+### 5. Exportar e Importar Dados (Fase 3)
+- [ ] Implementar funcionalidade para exportar dados em JSON
+- [ ] Implementar importação para restaurar backup local
+- [ ] Testar fluxos de backup e restauração
+
+### 6. Sincronizar e Criar API Remota (Fase 4 - opcional)
+- [ ] Criar endpoints para sincronização (backup na nuvem, GitHub, etc)
+- [ ] Implementar autenticação via JWT para uso remoto (se desejar)
+- [ ] Implementar sincronização incremental ou completa
+
+### 7. Melhorar UI/UX e Fazer Deploy
+- [ ] Polir interface, responsividade e usabilidade
+- [ ] Empacotar app Electron para distribuição (Windows, Linux, Mac)
+- [ ] Documentar projeto e publicar no GitHub
 
 
 ## 📄 Licença
