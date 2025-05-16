@@ -8,79 +8,87 @@ Este documento descreve os requisitos funcionais mínimos (MVP) para um aplicati
 
 ## Requisitos Funcionais (MVP)
 
-### 0. 🔐 Autenticação Básica (MVP inicial)
+## 0. 🔐 Autenticação Básica (MVP inicial)
 
-- [ ] Implementar autenticação via login com senha fixa configurada no backend (sem cadastro de usuário no MVP)
-- [ ] O front-end deve possuir tela de login solicitando a senha
-- [ ] Toda requisição para API deve exigir token simples ou header customizado que valida a sessão
-- [ ] Sessão expira após tempo configurável, forçando re-login
-- [ ] Redirecionar para login se não autenticado
+- [ ] Implementar autenticação via login com senha fixa configurada no backend (sem cadastro de usuário no MVP).
+- [ ] Frontend deve possuir tela de login solicitando a senha.
+- [ ] Toda requisição para API deve exigir token simples ou header customizado que valida a sessão.
+- [ ] Sessão expira após tempo configurável, forçando re-login.
+- [ ] Redirecionar para login se não autenticado.
 
+---
 
-### 1. 🏦 Cadastro de Contas Bancárias
+## 1. 🏦 Cadastro de Contas Bancárias
 
-- [ ] Usuário deve poder criar, editar e excluir (CRUD) contas bancárias (ex: Carteira, Nubank, Caixa)
-- [ ] Na criação cada conta deve possuir um nome, tipo (corrente, poupança/investimento, dinheiro ou crédito), saldo, se faz parte ou não do orçamento e data do balanço inicial
-- [ ] O saldo da conta (saldo inicial) deve ser calculado dinâmicamente de acordo com transações finalizadas
-- [ ] A lista de contas deve exibir dois saldos na interface:
-  - Saldo Atual: com lançamentos finalizados
-  - Saldo Previsto: com lançamentos futuros e ainda não finalizados no mês
-- [ ] O saldo da conta deve ser atualizado dinamicamente no banco de dados conforme transações forem finalizadas
-- [ ] O saldo previsto deve ser demonstrado com o calculo do saldo atual somado às transações previstas no mês e não finalizadas ainda
-- [ ] Conta deve constar em uma tabela com id, nome, tipo (ENUM), saldo, se faz parte do orçamento (bool), data do balanço, data de criação e data de modificação
+- [ ] CRUD completo para contas bancárias (ex: Carteira, Nubank, Caixa).
+- [ ] Campos: nome, tipo (corrente, poupança/investimento, dinheiro, crédito), saldo inicial, participação no orçamento (bool), data do balanço inicial.
+- [ ] Saldo Atual calculado dinamicamente com lançamentos finalizados.
+- [ ] Saldo Previsto considera lançamentos futuros e não finalizados no mês.
+- [ ] Exibir tabela com: id, nome, tipo (ENUM), saldo atual, saldo previsto, faz parte do orçamento, data do balanço inicial, data de criação e modificação.
+- [ ] Atualização automática dos saldos conforme transações forem finalizadas.
 
-### 2. 🧾 Cadastro de Categorias e Subcategorias de Orçamento
+---
 
-- [ ] O usuário deve poder criar, editar e excluir (CRUD) categorias (ex: Casa, Alimentação, Transporte)
-- [ ] O usuário deve poder criar, editar e excluir (CRUD) subcategorias (ex: Mercado dentro de Casa, delivery dentro de Alimentação)
-- [ ] As subcategorias devem ser utilizadas nos lançamentos e nos orçamentos mensais
-- [ ] As subcategorias devem pertencer a uma categoria
-- [ ] O sistema não deve permitir lançar transações ou orçar diretamente em categorias principais (somente nas subcategorias)
-- [ ] O sistema deve ter um mock de categorias padrão ao acessar o sistema que deve ser carregado para novos usuários
-- [ ] O mock de categorias e subcategorias do sistema deve ser totalmente editável / removível pelos usuários
-- [ ] Cada categoria deve constar em uma tabela com  um id, nome, fk de usuario, data de criação e data de modificação
-- [ ] Cada subcategoria deve constar em uma tabela com id, nome, fk de categoria, data de criação e data de modificação
+## 2. 🧾 Cadastro de Categorias e Subcategorias
 
-### 3. 💸 Lançamento de Receitas, Despesas e Transferências
+- [ ] CRUD para categorias e subcategorias.
+- [ ] Categorias possuem nome, descrição e limite orçamentário mensal.
+- [ ] Subcategorias vinculadas a categorias.
+- [ ] Permitir ativar/desativar categorias e subcategorias.
+- [ ] Listagem clara para seleção em lançamentos.
 
-- [ ] O usuário deve poder criar, editar e excluir (CRUD) lançamentos 
-- [ ] O sistema deve comportar 3 tipos de operação (ENUM) de lançamentos, sendo de receita, despesa ou transferência entre contas
-- [ ] Lançamentos ao serem criados devem ter um tipo de operação, valor, data, conta associada e subcategoria 
-- [ ] Lançamentos do tipo transferência devem gerar um lançamento clone vinculado por UUID ao original na conta de destino (destinatário)
-- [ ] Lançamentos do tipo transferência devem permitir criação sem que seja adicionada uma subcategoria
-- [ ] A tabela deve ter campo de recorrência (FIXED, INSTALLMENT ou NONE)
-- [ ] Lançamentos com recorrência fixa devem permitir os períodos semanal, quinzenal e mensal (inicialmente)
-- [ ] Lançamentos com recorrência parcelada devem permitir a seleção do número de parcelas para registro
-- [ ] Os lançamentos recorrentes (fixos ou parcelados) devem ser gerados antecipadamente no momento da criação, criando os lançamentos futuros conforme a frequência e quantidade informadas
-- [ ] Cada parcela de um lançamento parcelado será um lançamento distinto com seu próprio `id`, porém todas as parcelas compartilham o mesmo `groupId` para facilitar edições em lote e agrupamento
-- [ ] Lançamentos com recorrência devem ser gerados nos respectivos meses de seus orçamentos
-- [ ] Cada lançamento deve constar em uma tabela com os campos: id, operação, destinatário, descrição, valor, data, conta associada, pk de categoria, recorrência (ENUM), entre outros
+---
 
+## 3. 💵 Lançamentos de Transações
 
-### 4. 📊 Orçamento Mensal por Subcategoria
+- [ ] CRUD para lançamentos financeiros (receitas, despesas e transferências).
+- [ ] Campos: data, valor, tipo (receita, despesa, transferência), conta origem, conta destino (se transferência), categoria/subcategoria, descrição, status (pendente/finalizado).
+- [ ] Atualizar saldo das contas e orçamento conforme lançamento finalizado.
+- [ ] Possibilidade de lançamento futuro (agendamento).
+- [ ] Validação para que transferências atualizem corretamente as duas contas.
 
-- [ ] O usuário deve poder definir um valor mensal planejado por subcategoria
-- [ ] O sistema deve calcular quanto já foi gasto na subcategoria no mês
-- [ ] O sistema deve exibir a diferença entre o valor planejado, gasto e previsto (negativo ou positivo) para cada subcategoria
-- [ ] Orçamentos devem poder ser criados, editados e excluídos (CRUD)
-- [ ] Cada orçamento deve estar vinculado ao usuário, mês/ano e subcategoria
+---
 
-### 5. ⚙️ Configuração e ambiente
+## 4. 📊 Orçamento Mensal por Categoria/Subcategoria
 
-- [ ] Backend deve expor API REST consumível pelo Angular (CORS habilitado)
-- [ ] Backend deve ser dockerizável para fácil deploy
-- [ ] Front-end Angular deve ser produzido com Angular CLI e empacotado para deploy simples (ex: `ng build --prod`)
-- [ ] Front-end deve armazenar token no localStorage ou sessionStorage
-- [ ] Front-end deve proteger rotas via guarda de rotas (Angular Route Guard) para bloquear acesso não autenticado
+- [ ] Visualizar orçamento mensal com limites por categoria e subcategoria.
+- [ ] Mostrar saldo consumido e saldo disponível.
+- [ ] Atualizar automaticamente conforme lançamentos finalizados.
+- [ ] Alertas visuais quando categoria ou subcategoria ultrapassar o limite.
+- [ ] Opção para ajustar limite mensal por categoria.
 
+---
 
-## Requisitos Futuros
+## 5. 🖥️ Frontend + Backend
 
-- Cadastro e Login de Usuários (JWT)
-- Integração automática com bancos via Open Finance
-- Dashboard com gráficos e relatórios avançados
-- Notificações e lembretes de vencimento
-- Multiusuário e compartilhamento de contas
+- [ ] Backend com Spring Boot + SQLite (local/offline).
+- [ ] API REST para todos os endpoints.
+- [ ] Frontend Angular com telas para:
+  - Login
+  - Dashboard resumo (contas e orçamento)
+  - Cadastro/edição de contas
+  - Cadastro/edição de categorias e subcategorias
+  - Cadastro/edição de lançamentos
+  - Orçamentos mensais
+- [ ] Empacotamento do frontend com Electron para app desktop offline.
+
+---
+
+## Extras (fase 1)
+
+- [ ] Exportação e importação de dados em JSON para backup manual.
+- [ ] Testes básicos de API e interface.
+- [ ] Validação e tratamento de erros no frontend/backend.
+
+---
+
+# Próximos passos após MVP
+
+- Implementar autenticação real com usuários e JWT (Fase 2).
+- Sincronização com backend remoto PostgreSQL.
+- Relatórios simples de gastos.
+- Interface polida com Angular Material.
+- Aplicativo mobile com Flutter.
 
 ---
 
