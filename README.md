@@ -21,9 +21,9 @@ Este repositório contém o planejamento e, futuramente, o código-fonte de um s
   - [🗓️ Planejamento Geral](#️-planejamento-geral)
   - [📅 Cronograma por Semanas](#-cronograma-por-semanas)
   - [🚀 Plano de Desenvolvimento - Passo a Passo](#-plano-de-desenvolvimento---passo-a-passo)
-    - [0. Definir Escopo e protótipos](#0-definir-escopo-e-protótipos)
-    - [1. Configurar Ambiente de Desenvolvimento](#1-configurar-ambiente-de-desenvolvimento)
-    - [2. Fase 1 – Aplicativo Local com Electron](#2-fase-1--aplicativo-local-com-electron)
+    - [0. Definir Escopo e protótipos (semana 1 e 2)](#0-definir-escopo-e-protótipos-semana-1-e-2)
+    - [1. Configurar Ambiente de Desenvolvimento (semana 3)](#1-configurar-ambiente-de-desenvolvimento-semana-3)
+    - [2. Fase 1 – Aplicativo Local com Electron (semana 4, 5, 6, 7 e 8)](#2-fase-1--aplicativo-local-com-electron-semana-4-5-6-7-e-8)
       - [Backend](#backend-1)
       - [Frontend](#frontend)
       - [Extras (fase 1)](#extras-fase-1)
@@ -161,13 +161,13 @@ Este repositório contém o planejamento e, futuramente, o código-fonte de um s
 
 ## 🚀 Plano de Desenvolvimento - Passo a Passo
 
-### 0. Definir Escopo e protótipos
+### 0. Definir Escopo e protótipos (semana 1 e 2)
 - [x] Definir escopo MVP de requisitos do projeto
-- [ ] Criar wireframes do MVP
+- [ ] Criar wireframes do MVP (figma no [link](https://www.figma.com/design/jVGa1laO8WMWhzxlJKT7TF/PROJETO--APP-FINANCEIRO?node-id=0-1&t=qTswms0Jup1cTlM1-1))
 - [ ] Criar diagrama de banco do MVP
 - [ ] Criar diagrama UML do MVP
 
-### 1. Configurar Ambiente de Desenvolvimento
+### 1. Configurar Ambiente de Desenvolvimento (semana 3)
 - [ ] Instalar JDK 17+
 - [ ] Instalar Node.js + npm
 - [ ] Instalar Angular CLI (`npm install -g @angular/cli`)
@@ -176,7 +176,7 @@ Este repositório contém o planejamento e, futuramente, o código-fonte de um s
 
 ---
 
-### 2. Fase 1 – Aplicativo Local com Electron
+### 2. Fase 1 – Aplicativo Local com Electron (semana 4, 5, 6, 7 e 8)
 #### Backend
 - [ ] Criar projeto Spring Boot com Web + Data JPA
 - [ ] Configurar SQLite para persistência local
