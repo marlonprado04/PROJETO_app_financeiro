@@ -1,0 +1,86 @@
+# Modelos de Dados
+
+## User
+
+  - id: Long
+  - username: String
+  - passwordHash: String (armazenar hash da senha fixa)
+  - createdAt: LocalDateTime
+  - updatedAt: LocalDateTime
+
+## Account
+
+- id: Long
+- name: String
+- type: Enum (CASH, DEBIT, SAVINGS, INVESTMENT, CREDIT)  
+- currentBalance: BigDecimal       // Atualizado dinamicamente com base em lançamentos finalizados
+- isBudgetIncluded: Boolean        // Se faz parte do orçamento
+- balanceDate: LocalDate           // Data do balanço
+- user: FK para User
+- createdAt: LocalDateTime
+- updatedAt: LocalDateTime
+
+## Category
+
+- id: Long
+- name: String
+- user: FK para User
+- createdAt: LocalDateTime
+- updatedAt: LocalDateTime
+
+
+## Subcategory
+
+- id: Long
+- name: String
+- category: FK para Category
+- createdAt: LocalDateTime
+- updatedAt: LocalDateTime
+
+
+## Transaction
+
+- id: Long
+- user: FK para User
+- account: FK para Account
+- subcategory: FK para Subcategory // (nullable para transferências)
+- payee: String (destinatário / favorecido)
+- description: String
+- amount: BigDecimal
+- date: LocalDate
+- operation: Enum (INCOME, EXPENSE, TRANSFER)  
+- transferGroupId: UUID (nullable) // Identificador compartilhado entre transações de transferência
+- recurrence: Enum (FIXED, INSTALLMENT, NONE) // Tipo de recorrência do lançamento
+- recurrenceFrequency: Enum (WEEKLY, BIWEEKLY, MONTHLY) (nullable) // Frequência para recorrência fixa
+- installmentCount: Integer (nullable) // Número total de parcelas para recorrência parcelada
+- groupId: UUID (nullable) // Identificador compartilhado para agrupar lançamentos gerados a partir da mesma recorrência (ex: todas as parcelas de um parcelado)
+- isCleared: Boolean // Indica se o lançamento foi finalizado
+- createdAt: LocalDateTime
+- updatedAt: LocalDateTime
+
+
+## Budget
+
+- id: Long
+- user: FK para User
+- subcategory: FK para Subcategory
+- month: Integer (1-12)
+- year: Integer
+- plannedAmount: BigDecimal       // Valor orçado
+- actualAmount: BigDecimal        // Calculado dinamicamente dos lançamentos finalizados
+- createdAt: LocalDateTime
+- updatedAt: LocalDateTime
+
+---
+
+## Notas Técnicas
+
+- Autenticação: Spring Security + JWT
+- Criptografia de senha: BCrypt
+- Middleware no front-end (Angular) para verificar token e redirecionar para login
+- Modelo `Account` com FK para `User`
+- Campo `balance` pode ser calculado ou armazenado com atualização via trigger lógica
+- Modelos `Category` e `SubCategory` com relação 1:N (uma categoria tem muitas subcategorias)
+- Subcategorias são os nós finais da hierarquia — lançamentos e orçamentos usam apenas elas
+- Transferências são controladas pelo `transferGroupId`
+- O campo `payee` é string simples, sem FK para outra tabela por enquanto

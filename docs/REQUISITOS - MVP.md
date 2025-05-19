@@ -41,8 +41,8 @@ Este documento descreve os requisitos funcionais mínimos (MVP) para um aplicati
 
 ## 3. 💵 Lançamentos de Transações
 
-- [ ] CRUD para lançamentos financeiros (receitas, despesas e transferências).
-- [ ] Campos: data, valor, tipo (receita, despesa, transferência), conta origem, conta destino (se transferência), categoria/subcategoria, descrição, status (pendente/finalizado).
+- [ ] CRUD para lançamentos financeiros (entradas, saídas e transferências).
+- [ ] Campos: data, valor, tipo (entrada, saída, transferência), conta origem, conta destino (se transferência), categoria/subcategoria, descrição, status (pendente/finalizado).
 - [ ] Atualizar saldo das contas e orçamento conforme lançamento finalizado.
 - [ ] Possibilidade de lançamento futuro (agendamento).
 - [ ] Validação para que transferências atualizem corretamente as duas contas.
@@ -64,11 +64,10 @@ Este documento descreve os requisitos funcionais mínimos (MVP) para um aplicati
 - [ ] Backend com Spring Boot + SQLite (local/offline).
 - [ ] API REST para todos os endpoints.
 - [ ] Frontend Angular com telas para:
-  - Login
-  - Dashboard resumo (contas e orçamento)
-  - Cadastro/edição de contas
-  - Cadastro/edição de categorias e subcategorias
-  - Cadastro/edição de lançamentos
+  - Login (tela inicial)
+  - Cadastro/edição de contas (tela de orçamentos ou lançamentos)
+  - Cadastro/edição de categorias e subcategorias (tela de orçamentos)
+  - Cadastro/edição de lançamentos (tela de lançamentos)
   - Orçamentos mensais
 - [ ] Empacotamento do frontend com Electron para app desktop offline.
 
@@ -89,93 +88,3 @@ Este documento descreve os requisitos funcionais mínimos (MVP) para um aplicati
 - Relatórios simples de gastos.
 - Interface polida com Angular Material.
 - Aplicativo mobile com Flutter.
-
----
-
-## Modelos de Dados
-
-### User
-
-  - id: Long
-  - username: String
-  - passwordHash: String (armazenar hash da senha fixa)
-  - createdAt: LocalDateTime
-  - updatedAt: LocalDateTime
-
-### Account
-
-- id: Long
-- name: String
-- type: Enum (CHECKING, SAVINGS, CASH, CREDIT)
-- initialBalance: BigDecimal
-- currentBalance: BigDecimal       // Atualizado dinamicamente com base em lançamentos finalizados
-- isBudgetIncluded: Boolean        // Se faz parte do orçamento
-- balanceDate: LocalDate           // Data do balanço
-- user: FK para User
-- createdAt: LocalDateTime
-- updatedAt: LocalDateTime
-
-### Category
-
-- id: Long
-- name: String
-- user: FK para User
-- createdAt: LocalDateTime
-- updatedAt: LocalDateTime
-
-
-### Subcategory
-
-- id: Long
-- name: String
-- category: FK para Category
-- createdAt: LocalDateTime
-- updatedAt: LocalDateTime
-
-
-### Transaction
-
-- id: Long
-- user: FK para User
-- account: FK para Account
-- subcategory: FK para Subcategory // (nullable para transferências)
-- payee: String (destinatário / favorecido)
-- description: String
-- amount: BigDecimal
-- date: LocalDate
-- operation: Enum (INCOME, EXPENSE, TRANSFER)
-- transferGroupId: UUID (nullable) // Identificador compartilhado entre transações de transferência
-- recurrence: Enum (FIXED, INSTALLMENT, NONE) // Tipo de recorrência do lançamento
-- recurrenceFrequency: Enum (WEEKLY, BIWEEKLY, MONTHLY) (nullable) // Frequência para recorrência fixa
-- installmentCount: Integer (nullable) // Número total de parcelas para recorrência parcelada
-- groupId: UUID (nullable) // Identificador compartilhado para agrupar lançamentos gerados a partir da mesma recorrência (ex: todas as parcelas de um parcelado)
-- isCleared: Boolean // Indica se o lançamento foi finalizado
-- createdAt: LocalDateTime
-- updatedAt: LocalDateTime
-
-
-### Budget
-
-- id: Long
-- user: FK para User
-- subcategory: FK para Subcategory
-- month: Integer (1-12)
-- year: Integer
-- plannedAmount: BigDecimal       // Valor orçado
-- actualAmount: BigDecimal        // Calculado dinamicamente dos lançamentos finalizados
-- createdAt: LocalDateTime
-- updatedAt: LocalDateTime
-
----
-
-## Notas Técnicas
-
-- Autenticação: Spring Security + JWT
-- Criptografia de senha: BCrypt
-- Middleware no front-end (Angular) para verificar token e redirecionar para login
-- Modelo `Account` com FK para `User`
-- Campo `balance` pode ser calculado ou armazenado com atualização via trigger lógica
-- Modelos `Category` e `SubCategory` com relação 1:N (uma categoria tem muitas subcategorias)
-- Subcategorias são os nós finais da hierarquia — lançamentos e orçamentos usam apenas elas
-- Transferências são controladas pelo `transferGroupId`
-- O campo `payee` é string simples, sem FK para outra tabela por enquanto

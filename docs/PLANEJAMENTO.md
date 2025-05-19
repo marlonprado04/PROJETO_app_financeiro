@@ -4,7 +4,7 @@
 
 - [ ] Cadastro de contas bancárias manuais.
 - [ ] Cadastro de categorias e subcategorias de orçamento.
-- [ ] Lançamento de receitas, despesas e transferências.
+- [ ] Lançamento de entradas, saídas e transferências.
 - [ ] Orçamento mensal por categoria/subcategoria.
 
 ## Funcionalidades futuras (Fase 2+)
@@ -57,7 +57,7 @@
 | 2      | Criar wireframes e modelagem inicial do banco (ERD)                                 |
 | 3      | Iniciar backend com Spring Boot + SQLite                                            |
 | 4      | Implementar CRUD e autenticação básica (usuário fixo admin/admin)                   |
-| 5      | Criar frontend Angular e telas iniciais (login, dashboard)                          |
+| 5      | Criar frontend Angular e telas iniciais (login, telas)                          |
 | 6      | Conectar frontend ao backend local                                                  |
 | 7      | Empacotar Angular com Electron para app desktop                                     |
 | 8      | Implementar exportação/importação de dados locais (JSON)                            |
