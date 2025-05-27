@@ -73,7 +73,7 @@
 
 ### 0. Definir Escopo e protótipos (semana 1 e 2)
 - [x] Definir escopo MVP de requisitos do projeto
-- [ ] Criar wireframes do MVP (figma no [link](https://www.figma.com/design/jVGa1laO8WMWhzxlJKT7TF/PROJETO--APP-FINANCEIRO?node-id=0-1&t=qTswms0Jup1cTlM1-1))
+- [x] Criar wireframes do MVP (figma no [link](https://www.figma.com/design/jVGa1laO8WMWhzxlJKT7TF/PROJETO--APP-FINANCEIRO?node-id=0-1&t=qTswms0Jup1cTlM1-1))
 - [ ] Criar diagrama de banco do MVP
 - [ ] Criar diagrama UML do MVP
 
@@ -88,7 +88,7 @@
 #### Backend
 - [ ] Criar projeto Spring Boot com Web + Data JPA
 - [ ] Configurar SQLite para persistência local
-- [ ] Criar modelos: User (fixo), Account, Category, Transaction
+- [ ] Criar modelos: Account, Category, Transaction
 - [ ] CRUD para contas, categorias, lançamentos
 - [ ] API REST testável com Postman
 

@@ -8,15 +8,6 @@ Este documento descreve os requisitos funcionais mínimos (MVP) para um aplicati
 
 ## Requisitos Funcionais (MVP)
 
-## 0. 🔐 Autenticação Básica (MVP inicial)
-
-- [ ] Implementar autenticação via login com senha fixa configurada no backend (sem cadastro de usuário no MVP).
-- [ ] Frontend deve possuir tela de login solicitando a senha.
-- [ ] Toda requisição para API deve exigir token simples ou header customizado que valida a sessão.
-- [ ] Sessão expira após tempo configurável, forçando re-login.
-- [ ] Redirecionar para login se não autenticado.
-
----
 
 ## 1. 🏦 Cadastro de Contas Bancárias
 
@@ -83,8 +74,6 @@ Este documento descreve os requisitos funcionais mínimos (MVP) para um aplicati
 
 # Próximos passos após MVP
 
-- Implementar autenticação real com usuários e JWT (Fase 2).
-- Sincronização com backend remoto PostgreSQL.
 - Relatórios simples de gastos.
 - Interface polida com Angular Material.
-- Aplicativo mobile com Flutter.
+- Aplicativo mobile.

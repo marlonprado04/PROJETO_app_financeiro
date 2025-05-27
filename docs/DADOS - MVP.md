@@ -1,13 +1,5 @@
 # Modelos de Dados
 
-## User
-
-  - id: Long
-  - username: String
-  - passwordHash: String (armazenar hash da senha fixa)
-  - createdAt: LocalDateTime
-  - updatedAt: LocalDateTime
-
 ## Account
 
 - id: Long
@@ -16,7 +8,6 @@
 - currentBalance: BigDecimal       // Atualizado dinamicamente com base em lançamentos finalizados
 - isBudgetIncluded: Boolean        // Se faz parte do orçamento
 - balanceDate: LocalDate           // Data do balanço
-- user: FK para User
 - createdAt: LocalDateTime
 - updatedAt: LocalDateTime
 
@@ -24,7 +15,6 @@
 
 - id: Long
 - name: String
-- user: FK para User
 - createdAt: LocalDateTime
 - updatedAt: LocalDateTime
 
@@ -41,7 +31,6 @@
 ## Transaction
 
 - id: Long
-- user: FK para User
 - account: FK para Account
 - subcategory: FK para Subcategory // (nullable para transferências)
 - payee: String (destinatário / favorecido)
@@ -62,7 +51,6 @@
 ## Budget
 
 - id: Long
-- user: FK para User
 - subcategory: FK para Subcategory
 - month: Integer (1-12)
 - year: Integer
@@ -78,7 +66,6 @@
 - Autenticação: Spring Security + JWT
 - Criptografia de senha: BCrypt
 - Middleware no front-end (Angular) para verificar token e redirecionar para login
-- Modelo `Account` com FK para `User`
 - Campo `balance` pode ser calculado ou armazenado com atualização via trigger lógica
 - Modelos `Category` e `SubCategory` com relação 1:N (uma categoria tem muitas subcategorias)
 - Subcategorias são os nós finais da hierarquia — lançamentos e orçamentos usam apenas elas

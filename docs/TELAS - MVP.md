@@ -16,19 +16,6 @@ Este documento descreve as telas, menus e campos do MVP baseado nos requisitos p
 
 ---
 
-## 🔐 Tela de Login
-
-**Campos:**
-- Usuário (admin)
-- Senha (admin)
-
-**Ações:**
-- Botão "Entrar"
-- Redireciona para tela de orçamentos ao autenticar
-- Exibe mensagem de erro se senha incorreta
-
----
-
 ---
 
 ## 🏦 Lista de Contas Bancárias (menu lateral)
@@ -138,7 +125,6 @@ Este documento descreve as telas, menus e campos do MVP baseado nos requisitos p
 
 **Componentes:**
 - Mensagem de erro (ex: sessão expirada)
-- Botão "Voltar ao Login"
 
 ---
 
@@ -160,7 +146,6 @@ Este documento descreve as telas, menus e campos do MVP baseado nos requisitos p
 
 ## 🗂️ Organização de Rotas (Angular)
 
-- `/login`
 - `/dashboard`
 - `/contas`
 - `/categorias`
