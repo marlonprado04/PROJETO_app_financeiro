@@ -31,3 +31,33 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Maven / Gradle folders
+target/
+build/
+
+# Eclipse / IntelliJ / VSCode project files
+/.idea/
+/*.iml
+/.vscode/
+/*.ipr
+/*.iws
+/.classpath
+/.project
+
+# Spring Boot specific
+spring.log
+
+# SQLite DB local file
+*.db
