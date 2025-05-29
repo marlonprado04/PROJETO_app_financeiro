@@ -74,8 +74,8 @@
 ### 0. Definir Escopo e protótipos (semana 1 e 2)
 - [x] Definir escopo MVP de requisitos do projeto
 - [x] Criar wireframes do MVP (figma no [link](https://www.figma.com/design/jVGa1laO8WMWhzxlJKT7TF/PROJETO--APP-FINANCEIRO?node-id=0-1&t=qTswms0Jup1cTlM1-1))
-- [ ] Criar diagrama de banco do MVP
-- [ ] Criar diagrama UML do MVP
+- [x] Criar diagrama de banco do MVP (diagrama no [link](https://dbdiagram.io/d/YNAB-Clone-6837b82fc07db17e77a1936b))
+- [x] Criar diagrama UML do MVP
 
 ### 1. Configurar Ambiente de Desenvolvimento (semana 3)
 - [ ] Instalar JDK 17+
