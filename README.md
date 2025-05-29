@@ -1,38 +1,40 @@
-# 💸 Personal Budget App – Clone Simples do YNAB
+# 💸 YNAB Clone – Clone Simples do YNAB
 
 Aplicativo pessoal de orçamento financeiro inspirado no YNAB (You Need A Budget).
 
 ## 🎯 Objetivos
 
-- Desenvolver uma aplicação pessoal de finanças com **Java + Spring Boot (backend)** e **Angular (frontend SPA)**.
-- Usar o método de orçamento por __envelopes__ para controle financeiro.
+- Desenvolver uma aplicação pessoal de finanças com **Node.js + Express + TypeScript (backend)** e **React (SPA frontend)**.
+- Usar o método de orçamento por **envelopes** para controle financeiro.
 - Foco em uso pessoal, offline e multiplataforma.
 - Portfólio profissional e aprendizado de boas práticas.
-- Fase 1 – Aplicativo local e offline:
-  - Backend local com SQLite, rodando no próprio computador.
-  - Frontend Angular empacotado com Electron como app desktop.
-  - Funcional sem necessidade de internet, ideal para uso pessoal.
-- Fase 2 – Aplicativo com sincronização remota (opcional):
-  - APIs web para sincronização em nuvem (autenticação, backup e multi-dispositivo).
-  - Banco remoto com PostgreSQL em VPS.
-  - Integração com futuros apps móveis.
-- Aplicar conceitos de:
-  - Arquitetura limpa e modular no backend.
-  - Boas práticas de autenticação e segurança.
-  - Deploy em produção com Docker e HTTPS.
-  - Desenvolvimento multiplataforma com Angular + Electron + Flutter.
 
+### 🥇 Fase 1 – Aplicativo local e offline
+- Backend local com **SQLite** via **Prisma ORM**, rodando no próprio computador.
+- Frontend React empacotado com **Electron** como app desktop.
+- Funcional sem necessidade de internet, ideal para uso pessoal.
+
+### 🌐 Fase 2 – Aplicativo com sincronização remota (opcional)
+- APIs web para sincronização em nuvem (autenticação, backup e multi-dispositivo).
+- Banco remoto com **PostgreSQL** em **VPS**.
+- Integração com futuros apps móveis.
+
+### 📌 Conceitos aplicados
+- Arquitetura limpa e modular no backend.
+- Boas práticas de autenticação e segurança.
+- Deploy em produção com **Docker** e **HTTPS**.
+- Desenvolvimento multiplataforma com **React + Electron + Capacitor/Flutter**.
 
 ## 🛠️ Stack Tecnológica
 
-- **Backend:** Java 17+, Spring Boot, SQLite (local), PostgreSQL (remoto), Docker.
-- **Frontend:** Angular 17+, Angular Material, Electron.
+- **Backend:** Node.js, Express, TypeScript, Prisma ORM, SQLite (local), PostgreSQL (remoto), Docker.
+- **Frontend:** React + Vite, TypeScript, Tailwind CSS, Electron.
 - **Mobile:** Flutter (futuro).
-- **DevOps:** Docker, Nginx, Let's Encrypt.
+- **DevOps:** Docker.
 
 ## 🏗️ Arquitetura
 
-- **Fase 1:** App local (Spring Boot + SQLite + Angular/Electron).
+- **Fase 1:** App local (Express + SQLite + React/Electron).
 - **Fase 2:** Sincronização remota (PostgreSQL, autenticação JWT, deploy em VPS).
 
 ## 📚 Planejamento e Tarefas
