@@ -81,11 +81,12 @@ O MVP contemplará funcionalidades essenciais para permitir ao usuário manter o
   - Valor;
   - Tipo;
   - Conta origem;
-  - Destinatário (para transferência ou identificação / relatórios futuros)
+  - Destino (para transferência ou identificação / relatórios futuros)
   - Categoria/Subcategoria;
   - Descrição;
   - Status (pendente/finalizado);
 - Lançamentos futuros permitidos (agendamento);
+- 
 - Atualização automática dos saldos de contas e orçamentos ao finalizar transações;
 - Validação de consistência em transferências (afetar ambas as contas corretamente).
 
@@ -102,6 +103,39 @@ O MVP contemplará funcionalidades essenciais para permitir ao usuário manter o
 - Atualizações em tempo real conforme lançamentos são finalizados;
 - Alertas visuais para categorias com orçamento excedido;
 - Permitir ajuste dos limites orçamentários mensais.
+
+---
+
+### 4.5. Lançamentos Recorrentes
+
+**Descrição**: Permitir o agendamento automático de transações recorrentes (ex: mensalidades, assinaturas, salários), com base em uma frequência definida pelo usuário.
+
+**Funcionalidades**:
+
+- Marcar uma transação como recorrente no momento do cadastro;
+- Definição dos seguintes parâmetros de recorrência:
+  - Frequência: diária, semanal, quinzenal, mensal;
+  - Data da próxima execução;
+  - Data final (opcional) para término da recorrência;
+- Geração automática de lançamentos com base no agendamento:
+  - A nova transação é criada com a mesma estrutura da original, mas com nova data e status pendente;
+  - A recorrência atualiza a data da próxima execução automaticamente;
+- Edição de recorrência:
+  - Permitir pausar, editar ou encerrar recorrências existentes;
+- As transações geradas devem:
+  - Ser listadas normalmente com as demais transações;
+  - Ser associadas à recorrência original (campo de referência);
+- Processamento das recorrências:
+  - Executado localmente (sem necessidade de rede);
+  - Pode ser disparado automaticamente ao iniciar o aplicativo ou manualmente (via botão "Atualizar lançamentos recorrentes").
+
+**Campos adicionais (modelo de dados da transação)**:
+
+- `recorrente` (booleano): indica se é uma transação recorrente;
+- `frequencia` (enum): `DIARIA`, `SEMANAL`, `QUINZENAL`, `MENSAL`;
+- `proxima_execucao` (data): define a próxima data de geração;
+- `fim_recorrencia` (data, opcional): define até quando a transação será repetida;
+- `pai_id` (uuid, opcional): identifica a transação-matriz que originou a recorrência.
 
 ---
 
