@@ -108,26 +108,25 @@ O MVP contemplará funcionalidades essenciais para permitir ao usuário manter o
 
 ### 4.5. Lançamentos Recorrentes
 
-**Descrição**: Permitir o agendamento automático de transações recorrentes (ex: mensalidades, assinaturas, salários), com base em uma frequência definida pelo usuário.
+**Descrição**: Permitir o agendamento automático de transações recorrentes (como mensalidades, assinaturas e pagamentos periódicos), com base em uma frequência definida pelo usuário. O sistema deve permitir também a edição ou exclusão de transações individuais em meio a uma sequência de recorrências, além de possibilitar o cancelamento ou modificação da sequência de lançamentos.
 
 **Funcionalidades**:
 
 - Marcar uma transação como recorrente no momento do cadastro;
 - Definição dos seguintes parâmetros de recorrência:
   - Frequência: diária, semanal, quinzenal, mensal;
-  - Data da próxima execução;
-  - Data final (opcional) para término da recorrência;
 - Geração automática de lançamentos com base no agendamento:
   - A nova transação é criada com a mesma estrutura da original, mas com nova data e status pendente;
   - A recorrência atualiza a data da próxima execução automaticamente;
 - Edição de recorrência:
-  - Permitir pausar, editar ou encerrar recorrências existentes;
+  - Permitir editar ou encerrar recorrências existentes;
 - As transações geradas devem:
   - Ser listadas normalmente com as demais transações;
   - Ser associadas à recorrência original (campo de referência);
 - Processamento das recorrências:
   - Executado localmente (sem necessidade de rede);
   - Pode ser disparado automaticamente ao iniciar o aplicativo ou manualmente (via botão "Atualizar lançamentos recorrentes").
+
 
 **Campos adicionais (modelo de dados da transação)**:
 
