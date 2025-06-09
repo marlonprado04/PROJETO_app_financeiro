@@ -32,18 +32,20 @@
 
 - id: Long
 - account: FK para Account
+- toAccount: ID de Account de destino (no caso de transferencia) // nullable caso não seja
 - subcategory: FK para Subcategory // (nullable para transferências)
-- payee: String (destinatário / favorecido)
+- payee: String (destinatário)
 - description: String
 - amount: BigDecimal
-- date: LocalDate
-- operation: Enum (INCOME, EXPENSE, TRANSFER)  
+- date: LocalDateTime // para manter o horário também, dessa forma facilita ordenação de despesas futuras
+- operationType: Enum (INCOME, EXPENSE, TRANSFER)  
 - transferGroupId: UUID (nullable) // Identificador compartilhado entre transações de transferência
-- recurrence: Enum (FIXED, INSTALLMENT, NONE) // Tipo de recorrência do lançamento
-- recurrenceFrequency: Enum (WEEKLY, BIWEEKLY, MONTHLY) (nullable) // Frequência para recorrência fixa
+- recurrenceType: Enum (FIXED, INSTALLMENT, NONE) // Tipo de recorrência do lançamento, pode ser none para evitar nullpointerexception
+- recurrenceFrequency: Enum (DAILY, WEEKLY, BIWEEKLY, MONTHLY, BIMONHLY, TRYMONTHLY, SIXMONTHLY, YEARLY) (nullable) // Frequência para recorrência fixa
 - installmentCount: Integer (nullable) // Número total de parcelas para recorrência parcelada
 - groupId: UUID (nullable) // Identificador compartilhado para agrupar lançamentos gerados a partir da mesma recorrência (ex: todas as parcelas de um parcelado)
-- isCleared: Boolean // Indica se o lançamento foi finalizado
+- manualOverride: Boolean // default false, serve para quando editar somente uma das parcelas ou lançamentos fixos, impedindo edições futuras de afetarem essa transação
+- status: Boolean // Indica se o lançamento foi finalizado
 - createdAt: LocalDateTime
 - updatedAt: LocalDateTime
 
