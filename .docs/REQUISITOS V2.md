@@ -1,4 +1,33 @@
-# Documento de Requisitos Funcionais — MVP  
+# Documento de Requisitos Funcionais — MVP
+
+## Indice
+
+- [Documento de Requisitos Funcionais — MVP](#documento-de-requisitos-funcionais--mvp)
+  - [Indice](#indice)
+  - [1. Introdução](#1-introdução)
+  - [2. Objetivo do Produto](#2-objetivo-do-produto)
+  - [3. Escopo do MVP](#3-escopo-do-mvp)
+  - [4. Requisitos Funcionais](#4-requisitos-funcionais)
+    - [4.1. Cadastro de Contas Bancárias](#41-cadastro-de-contas-bancárias)
+    - [4.2. Cadastro de Categorias e Subcategorias](#42-cadastro-de-categorias-e-subcategorias)
+    - [4.3. Lançamentos de Transações](#43-lançamentos-de-transações)
+      - [4.3.1 Lançamentos Recorrentes](#431-lançamentos-recorrentes)
+        - [4.3.1.1 Controle de Edição de Lançamentos Recorrentes](#4311-controle-de-edição-de-lançamentos-recorrentes)
+    - [4.4. Orçamento Mensal por Categoria](#44-orçamento-mensal-por-categoria)
+  - [5. Arquitetura Técnica](#5-arquitetura-técnica)
+    - [5.1. Backend](#51-backend)
+    - [5.2. Frontend](#52-frontend)
+  - [6. Funcionalidades Extras (fase 1)](#6-funcionalidades-extras-fase-1)
+  - [7. Requisitos Não Funcionais](#7-requisitos-não-funcionais)
+  - [8. Exclusões do MVP](#8-exclusões-do-mvp)
+  - [9. Especificação da API REST (Endpoints)](#9-especificação-da-api-rest-endpoints)
+    - [9.1 Contas (Accounts)](#91-contas-accounts)
+    - [9.2 Categorias](#92-categorias)
+    - [9.3 Transações](#93-transações)
+    - [9.4 Relatórios](#94-relatórios)
+  - [10. Considerações Finais](#10-considerações-finais)
+
+
 **Projeto**: Aplicativo de Gestão Financeira Pessoal (Clone do YNAB)  
 
 ---

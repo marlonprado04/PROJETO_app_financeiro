@@ -4,7 +4,7 @@ Aplicativo pessoal de orçamento financeiro inspirado no YNAB (You Need A Budget
 
 ## 🎯 Objetivos
 
-- Desenvolver uma aplicação pessoal de finanças com **Node.js + Express + TypeScript (backend)** e **React (SPA frontend)**.
+- Desenvolver uma aplicação pessoal de finanças com **Spring Boot**, **SQLite**, **Angular (SPA frontend)** e **Electron**.
 - Usar o método de orçamento por **envelopes** para controle financeiro.
 - Foco em uso pessoal, offline e multiplataforma.
 - Portfólio profissional e aprendizado de boas práticas.
