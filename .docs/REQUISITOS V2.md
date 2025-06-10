@@ -106,6 +106,7 @@ O MVP incluirá funcionalidades essenciais para permitir ao usuário controlar s
 - Listagem de contas (card): `name`, saldos
 - Listagem de contas (tabela de edição): `id`, `name`, saldos, `type`, `isBudgetIncluded`, `createdAt`, `updatedAt`
 - Não permitir saldo negativo em contas do tipo `CASH` (regra de negócio).
+- Informar mensagem de erro ao registrar no caso de um lançamento que torne a conta do tipo `CASH` negativa
 
 ---
 

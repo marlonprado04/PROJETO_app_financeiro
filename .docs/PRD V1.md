@@ -28,7 +28,7 @@ Criar uma aplicação desktop que auxilie na organização financeira pessoal co
 
 - **Framework:** Angular
 - **UI:** Angular Material
-- **State Management:** Componente → Serviço (RxJS Subject) inicialmente
+- **State Management:** Componente 
 - **API calls:** HTTP client para comunicação com backend local
 - **Build:** Produzido com `ng build` e servido no Electron
 
@@ -99,8 +99,7 @@ Criar uma aplicação desktop que auxilie na organização financeira pessoal co
 
 ### Frontend
 
-- Testes unitários com Karma/Jasmine
-- E2E com Cypress ou Playwright (futuro)
+- Testes unitários 
 
 ### Backend
 
@@ -141,23 +140,4 @@ Criar uma aplicação desktop que auxilie na organização financeira pessoal co
 | Backend | Spring Boot, JPA, REST, SQLite |
 | Desktop App | Electron, Node.js |
 | Build Tool | Maven (Spring), Angular CLI |
-| Testes | JUnit, Karma, Jasmine |
-
----
-
-## 🧭 Próximas Ações
-
-1. Criar projeto Angular inicial (`ng new`)
-2. Criar projeto Spring Boot com dependências JPA + SQLite
-3. Criar primeiro endpoint REST (`/transacoes`)
-4. Iniciar app Electron com Angular empacotado e backend embutido
-5. Configurar build cross-platform
-
----
-
-Deseja que eu crie também:
-
-- O README base para esse projeto?
-- Um script de setup inicial com comandos?
-
-Ou você quer seguir para estruturar o **backend Spring Boot com SQLite** primeiro?
+| Testes | JUnit, Karma, Jasmine, etc |
