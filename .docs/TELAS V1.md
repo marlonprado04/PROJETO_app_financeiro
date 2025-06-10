@@ -1,6 +1,6 @@
 # 📱 Especificação de Telas e Menus da Aplicação Financeira (MVP)
 
-Este documento descreve as telas, menus e campos do MVP baseado nos requisitos previamente levantados.
+Esta sessão visa descrever as telas, menus e campos do MVP baseado nos requisitos previamente levantados.
 
 ---
 
